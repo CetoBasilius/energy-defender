@@ -1,0 +1,71 @@
+{
+    "waves": [
+        {
+            "name": "Wave 1",
+            "enemies": [
+                {
+                    "type": "basic",
+                    "timestamp": 0,
+                    "quantity": 2
+                },
+                {
+                    "type": "basic",
+                    "timestamp": 5,
+                    "quantity": 2
+                }
+            ]
+        },
+        {
+            "name": "Wave 2",
+            "enemies": [
+                {
+                    "type": "swift",
+                    "timestamp": 0,
+                    "quantity": 3
+                },
+                {
+                    "type": "swift",
+                    "timestamp": 5,
+                    "quantity": 3
+                }
+            ]
+        },
+        {
+            "name": "Wave 3",
+            "enemies": [
+                {
+                    "type": "swift",
+                    "timestamp": 0,
+                    "quantity": 2
+                },
+                {
+                    "type": "swift",
+                    "timestamp": 0,
+                    "quantity": 2
+                },
+                {
+                    "type": "swift",
+                    "timestamp": 5,
+                    "quantity": 3
+                },
+                {
+                    "type": "swift",
+                    "timestamp": 5,
+                    "quantity": 3
+                }
+            ]
+        },
+    ],
+    "tilemap": [
+        "BTBBBBBRBBBBBBBBBBBBBBBB",
+        "BBBBBBBBBBBBBBBBBBBBTBBB",
+        "BBBBBBTBBBBBBBTBBBBBBBBB",
+        "BBBBBBBBBBBBBBBBBBBBBBBB",
+        "PPPPPPPPPPPPPPPPPPPPPPPP",
+        "PPPPPPPPPPPPPPPPPPPPPPPP",
+        "BBBBBBBBBBBBBBBBRBBBBBBB",
+        "BBBBBBBBBBBBBBBBBBBBBBTB",
+        "BBBBBBBBBBBTBBBBBBBBBBBB",
+        "BBRBBBBBBBBBBBBRBBBBBBBB"
+    ]
+}
