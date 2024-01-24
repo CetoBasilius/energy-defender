@@ -1,15 +1,13 @@
+using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ScrollableCamera : MonoBehaviour
 {
     public float scrollSpeed = 5f;
     public float dragSpeed = 2f;
-    private float minX = -20f;
-    private float maxX = 20f;
-    private float minY = 0f;
-    private float maxY = 0f;
-
     private Vector3 dragOrigin;
+    public Tilemap tilemap;
 
     void Update()
     {
@@ -62,9 +60,20 @@ public class ScrollableCamera : MonoBehaviour
 
     void ClampCameraPosition()
     {
+        Camera cam = Camera.main;
+        float camHeight = 2f * cam.orthographicSize;
+        float camWidth = camHeight * cam.aspect;
+
+        float halfCamCellsX = (float)Math.Ceiling(camWidth / 2);
+        float minCellsX = tilemap.cellBounds.min.x;
+        float maxCellsX = tilemap.cellBounds.max.x;
+
+        float minX = minCellsX + halfCamCellsX;
+        float maxX = maxCellsX - halfCamCellsX - 1;
+
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
-        clampedPosition.y = Mathf.Clamp(clampedPosition.y, minY, maxY);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, 0f, 0f);
         transform.position = clampedPosition;
     }
 }
