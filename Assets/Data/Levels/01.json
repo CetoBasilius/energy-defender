@@ -2,56 +2,59 @@
     "waves": [
         {
             "name": "Wave 1",
+            "time": 0,
             "enemies": [
                 {
-                    "type": "basic",
-                    "timestamp": 0,
-                    "quantity": 2
+                    "name": "basic",
+                    "delay": 0,
+                    "count": 2
                 },
                 {
-                    "type": "basic",
-                    "timestamp": 5,
-                    "quantity": 2
+                    "name": "basic",
+                    "delay": 5,
+                    "count": 2
                 }
             ]
         },
         {
             "name": "Wave 2",
+            "time": 0,
             "enemies": [
                 {
-                    "type": "swift",
-                    "timestamp": 0,
-                    "quantity": 3
+                    "name": "swift",
+                    "delay": 0,
+                    "count": 3
                 },
                 {
-                    "type": "swift",
-                    "timestamp": 5,
-                    "quantity": 3
+                    "name": "swift",
+                    "delay": 5,
+                    "count": 3
                 }
             ]
         },
         {
             "name": "Wave 3",
+            "time": 0,
             "enemies": [
                 {
-                    "type": "swift",
-                    "timestamp": 0,
-                    "quantity": 2
+                    "name": "swift",
+                    "delay": 0,
+                    "count": 2
                 },
                 {
-                    "type": "swift",
-                    "timestamp": 0,
-                    "quantity": 2
+                    "name": "swift",
+                    "delay": 0,
+                    "count": 2
                 },
                 {
-                    "type": "swift",
-                    "timestamp": 5,
-                    "quantity": 3
+                    "name": "swift",
+                    "delay": 5,
+                    "count": 3
                 },
                 {
-                    "type": "swift",
-                    "timestamp": 5,
-                    "quantity": 3
+                    "name": "swift",
+                    "delay": 5,
+                    "count": 3
                 }
             ]
         },
