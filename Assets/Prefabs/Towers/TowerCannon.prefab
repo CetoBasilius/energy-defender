@@ -177,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7456183821310387977}
+  - component: {fileID: 6440797710875236623}
   m_Layer: 0
   m_Name: TowerCannon
   m_TagString: Untagged
@@ -201,6 +202,23 @@ Transform:
   - {fileID: 8510749023120830512}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6440797710875236623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267614621288253324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11785a356354544098e3087e72f7c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turret: {fileID: 8916047238919324035}
+  gun: {fileID: 2158808188235433279}
+  rotationSpeed: 1
+  isDefense: 0
+  gameManager: {fileID: 0}
 --- !u!1 &8916047238919324035
 GameObject:
   m_ObjectHideFlags: 0

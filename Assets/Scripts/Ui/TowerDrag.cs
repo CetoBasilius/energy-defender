@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 
 public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public GameManager gameManager;
     public GameObject towerPrefab;
     public GameObject battlefield;
     public Tilemap tilemap;
@@ -52,7 +53,11 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
                 Debug.Log("Dropped tower on " + tilebase.name + " at " + cellPosition);
 
-                // TODO: set tile to tower so no other tower can be placed there or improve placement logic
+                // Set tile to tower so no other tower can be placed there or improve placement logic
+
+                Tower tower = draggedTower.GetComponent<Tower>();
+                tower.gameManager = gameManager;
+                draggedTower = null;
             }
         }
         else
