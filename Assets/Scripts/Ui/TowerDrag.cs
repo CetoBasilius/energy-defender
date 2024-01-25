@@ -5,17 +5,19 @@ using UnityEngine.Tilemaps;
 public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject testTowerPrefab;
-    public GameObject towers;
+    public GameObject battlefield;
     public Tilemap tilemap;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
+    public ScrollableCamera scrollableCamera;
     private GameObject draggedTower;
     private Vector3Int lastCell;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         draggedTower = Instantiate(testTowerPrefab);
-        draggedTower.transform.SetParent(towers.transform, false);
+        draggedTower.transform.SetParent(battlefield.transform, false);
+        scrollableCamera.SetEnabled(false); // TODO: This should be handled by a UI manager, not the scrollable camera to prevent coupling, but life is short
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -59,6 +61,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         ClearLastCell();
+        scrollableCamera.SetEnabled(true); // TODO: This should be handled by a UI manager, not the scrollable camera to prevent coupling, but life is short
     }
 
     private TileBase GetGridTileUnderMouse()
