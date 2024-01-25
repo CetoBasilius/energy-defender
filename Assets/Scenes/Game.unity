@@ -4782,6 +4782,7 @@ GameObject:
   - component: {fileID: 1953008646}
   - component: {fileID: 1953008648}
   - component: {fileID: 1953008647}
+  - component: {fileID: 1953008649}
   m_Layer: 5
   m_Name: TestTowerPanel
   m_TagString: Untagged
@@ -4847,6 +4848,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953008645}
   m_CullTransparentMesh: 1
+--- !u!114 &1953008649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953008645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333e5eecbb803b9449417841aaa1f0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testTowerPrefab: {fileID: 4267614621288253324, guid: 038f0c2b380a3e44ebad12cb4827599e, type: 3}
+  towers: {fileID: 1487957094}
+  tilemap: {fileID: 1627217911}
 --- !u!1 &2060130667
 GameObject:
   m_ObjectHideFlags: 0
