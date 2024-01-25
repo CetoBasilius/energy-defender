@@ -57,9 +57,15 @@
                     "count": 3
                 }
             ]
-        },
+        }
     ],
-    "tilemap": [
+    "tilemap": {
+        "B": "Tiles/World01/grass",
+        "P": "Tiles/World01/path",
+        "T": "Tiles/World01/tree",
+        "R": "Tiles/World01/rock"
+    },
+    "tiledata": [
         "BTBBBBBRBBBBBBBBBBBBBBBB",
         "BBBBBBBBBBBBBBBBBBBBTBBB",
         "BBBBBBTBBBBBBBTBBBBBBBBB",
