@@ -218,7 +218,6 @@ MonoBehaviour:
   gun: {fileID: 2158808188235433279}
   rotationSpeed: 1
   isDefense: 0
-  gameManager: {fileID: 0}
 --- !u!1 &8916047238919324035
 GameObject:
   m_ObjectHideFlags: 0

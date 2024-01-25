@@ -8,7 +8,10 @@ public class Tower : MonoBehaviour
     public GameObject gun;
     public float rotationSpeed = 0f;
     public bool isDefense = false;
-    public GameManager gameManager;
+
+    private Enemy enemyTarget;
+
+
     void Start()
     {
 
@@ -20,9 +23,16 @@ public class Tower : MonoBehaviour
         {
             turret.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
-        else if (gameManager != null)
+        else if (enemyTarget != null && gun != null)
         {
-            // TODO: scan for enemies using gameManager or enemyManager
+            Vector3 direction = enemyTarget.transform.position - turret.transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            turret.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+    }
+
+    public void SetTarget(Enemy enemy)
+    {
+        this.enemyTarget = enemy;
     }
 }
