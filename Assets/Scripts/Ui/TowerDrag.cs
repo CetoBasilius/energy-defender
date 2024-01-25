@@ -1,18 +1,31 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using Data;
 
 public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public string dataType = "cannon";
     public GameManager gameManager;
     public GameObject towerPrefab;
     public GameObject battlefield;
     public Tilemap tilemap;
+    public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
     public ScrollableCamera scrollableCamera;
+
     private GameObject draggedTower;
     private Vector3Int lastCell;
+    private TowerData towerData;
+
+    void Start()
+    {
+        towerData = gameManager.GetTowerData(dataType);
+        int energyCost = towerData != null ? towerData.energyCost : 0;
+        energyCostText.text = energyCost.ToString();
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
