@@ -5,11 +5,12 @@ using UnityEngine.Tilemaps;
 public class ScrollableCamera : MonoBehaviour
 {
     public float scrollSpeed = 5f;
-    public float dragSpeed = 2f;
+    public float dragSpeed = 5f;
     private Vector3 dragOrigin;
+    private bool enableScroll = true;
     public Tilemap tilemap;
 
-    void Update()
+    private void Update()
     {
         if (Input.touchSupported)
         {
@@ -21,7 +22,7 @@ public class ScrollableCamera : MonoBehaviour
         }
     }
 
-    void HandleTouchInput()
+    private void HandleTouchInput()
     {
         if (Input.touchCount == 1)
         {
@@ -35,7 +36,7 @@ public class ScrollableCamera : MonoBehaviour
         }
     }
 
-    void HandleMouseInput()
+    private void HandleMouseInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -51,14 +52,19 @@ public class ScrollableCamera : MonoBehaviour
         }
     }
 
-    void MoveCamera(float deltaX, float deltaY, float speed)
+    private void MoveCamera(float deltaX, float deltaY, float speed)
     {
+        if (!enableScroll)
+        {
+            return;
+        }
+
         Vector3 movement = new Vector3(deltaX, deltaY, 0f) * speed * Time.deltaTime;
         transform.Translate(movement);
         ClampCameraPosition();
     }
 
-    void ClampCameraPosition()
+    private void ClampCameraPosition()
     {
         Camera cam = Camera.main;
         float camHeight = 2f * cam.orthographicSize;
@@ -75,5 +81,10 @@ public class ScrollableCamera : MonoBehaviour
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, 0f, 0f);
         transform.position = clampedPosition;
+    }
+
+    public void SetEnabled(bool enabled)
+    {
+        this.enableScroll = enabled;
     }
 }
