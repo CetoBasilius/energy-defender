@@ -64,12 +64,12 @@ public class ScrollableCamera : MonoBehaviour
         float camHeight = 2f * cam.orthographicSize;
         float camWidth = camHeight * cam.aspect;
 
-        float halfCamCellsX = (float)Math.Ceiling(camWidth / 2);
+        float halfCamCellsX = camWidth / 2;
         float minCellsX = tilemap.cellBounds.min.x;
         float maxCellsX = tilemap.cellBounds.max.x;
 
         float minX = minCellsX + halfCamCellsX;
-        float maxX = maxCellsX - halfCamCellsX - 1;
+        float maxX = maxCellsX - halfCamCellsX;
 
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
