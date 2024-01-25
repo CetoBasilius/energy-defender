@@ -288,7 +288,6 @@ GameObject:
   - component: {fileID: 905013781}
   - component: {fileID: 905013783}
   - component: {fileID: 905013782}
-  - component: {fileID: 905013784}
   m_Layer: 5
   m_Name: TowerSelectorPanel
   m_TagString: Untagged
@@ -353,18 +352,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905013780}
   m_CullTransparentMesh: 1
---- !u!114 &905013784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905013780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3e3d7297059bf2439c3d9d28e1a886e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1412889972
 GameObject:
   m_ObjectHideFlags: 0
