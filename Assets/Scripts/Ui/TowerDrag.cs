@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public GameObject testTowerPrefab;
+    public GameObject towerPrefab;
     public GameObject battlefield;
     public Tilemap tilemap;
     public Color placeableColor = Color.green;
@@ -15,7 +15,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        draggedTower = Instantiate(testTowerPrefab);
+        draggedTower = Instantiate(towerPrefab);
         draggedTower.transform.SetParent(battlefield.transform, false);
         scrollableCamera.SetEnabled(false); // TODO: This should be handled by a UI manager, not the scrollable camera to prevent coupling, but life is short
     }
