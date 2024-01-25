@@ -8,6 +8,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     public string dataType = "cannon";
     public GameManager gameManager;
+    // public GridManager gridManager;
     public GameObject towerPrefab;
     public GameObject battlefield;
     public Tilemap tilemap;
@@ -58,18 +59,19 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             }
             else
             {
+                // TODO: this should be handled by a tower manager or game manager, not the TowerDrag script
+
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
                 Vector3 snapPosition = tilemap.GetCellCenterWorld(cellPosition);
                 snapPosition.z = draggedTower.transform.position.z;
                 draggedTower.transform.position = snapPosition;
 
-                Debug.Log("Dropped tower on " + tilebase.name + " at " + cellPosition);
+                // TODO: Set tile to tower so no other tower can be placed there or improve placement logic
+                // tilemap.SetTile(cellPosition, tilebase);
 
-                // Set tile to tower so no other tower can be placed there or improve placement logic
+                // TODO: Register tower with gridManager
 
-                Tower tower = draggedTower.GetComponent<Tower>();
-                tower.gameManager = gameManager;
                 draggedTower = null;
             }
         }
