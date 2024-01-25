@@ -1,0 +1,74 @@
+{
+    "cannon": {
+        "name": "Cannon",
+        "description": "A cannon that shoots large projectiles.",
+        "health": 100,
+        "range": 5,
+        "damage": 20,
+        "attackRate": 3,
+        "specialRate": 0,
+        "maxAttackUnits": 1,
+        "energyCost": 5,
+        "maxQuantity": 100
+    },
+    "machinegun": {
+        "name": "Machinegun",
+        "description": "Fast firing machinegun",
+        "health": 100,
+        "range": 3,
+        "damage": 10,
+        "attackRate": 1,
+        "specialRate": 0,
+        "maxAttackUnits": 1,
+        "energyCost": 10,
+        "maxQuantity": 100
+    },
+    "sniper": {
+        "name": "Sniper",
+        "description": "Long range, high damage sniper",
+        "health": 100,
+        "range": 7,
+        "damage": 60,
+        "attackRate": 5,
+        "specialRate": 0,
+        "maxAttackUnits": 1,
+        "energyCost": 15,
+        "maxQuantity": 100
+    },
+    "missile": {
+        "name": "Missile Launcher",
+        "description": "Short range, high damage missile with splash damage",
+        "health": 100,
+        "range": 3,
+        "damage": 70,
+        "attackRate": 10,
+        "specialRate": 0,
+        "maxAttackUnits": 4,
+        "energyCost": 20,
+        "maxQuantity": 100
+    },
+    "solar": {
+        "name": "Solar Panel",
+        "description": "A solar panel that generates energy.",
+        "health": 100,
+        "range": 0,
+        "damage": 0,
+        "attackRate": 0,
+        "specialRate": 5,
+        "maxAttackUnits": 0,
+        "energyCost": 20,
+        "maxQuantity": 5
+    },
+    "power": {
+        "name": "Power Plant",
+        "description": "Multiplies attack power for towers in range.",
+        "health": 50,
+        "range": 1,
+        "damage": 0,
+        "attackRate": 0,
+        "specialRate": 1.5,
+        "maxAttackUnits": 0,
+        "energyCost": 20,
+        "maxQuantity": 5
+    }
+}
