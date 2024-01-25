@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
         int tilemapHeight = tiledata.Length;
 
         int tilemapStartX = -tilemapWidth / 2;
-        int tilemapStartY = -tilemapHeight / 2;
+        int tilemapStartY = tilemapHeight / 2 - 1;
 
         for (int rowIndex = 0; rowIndex < tiledata.Length; rowIndex++)
         {
@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
                 TileBase tile = Resources.Load<TileBase>(tilemap[tileChar.ToString()]);
                 if (tile)
                 {
-                    this.backgroundTilemap.SetTile(new Vector3Int(tilemapStartX + charCol, tilemapStartY + rowIndex, 0), tile);
+                    this.backgroundTilemap.SetTile(new Vector3Int(tilemapStartX + charCol, tilemapStartY - rowIndex, 0), tile);
                 }
             }
         }
