@@ -15,7 +15,6 @@ public class LevelManager : MonoBehaviour
     private bool initialized = false;
     private LevelData currentLevelData;
     private Tilemap backgroundTilemap;
-    private Tilemap towerTilemap;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     internal static void CreateInstance()
@@ -60,7 +59,6 @@ public class LevelManager : MonoBehaviour
         Dictionary<string, string> tilemap = this.currentLevelData.tilemap;
 
         this.backgroundTilemap.ClearAllTiles();
-        this.towerTilemap.ClearAllTiles();
 
         int tilemapWidth = tiledata[0].Length;
         int tilemapHeight = tiledata.Length;
@@ -99,10 +97,9 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    private void SetTilemaps(Tilemap backgroundTilemap, Tilemap towerTilemap)
+    private void SetTilemap(Tilemap backgroundTilemap)
     {
         this.backgroundTilemap = backgroundTilemap;
-        this.towerTilemap = towerTilemap;
     }
 
     internal static bool SetLevel(string levelName)
@@ -113,9 +110,9 @@ public class LevelManager : MonoBehaviour
             return false;
         }
 
-        if (!instance.towerTilemap || !instance.backgroundTilemap)
+        if (instance.backgroundTilemap == null)
         {
-            Debug.Log("Tilemaps are not set in the inspector");
+            Debug.Log("Tilemap not set in the inspector");
             return false;
         }
 
@@ -129,11 +126,11 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    internal static void Setup(Tilemap backgroundTilemap, Tilemap towerTilemap)
+    internal static void Setup(Tilemap backgroundTilemap)
     {
         if (instance)
         {
-            instance.SetTilemaps(backgroundTilemap, towerTilemap);
+            instance.SetTilemap(backgroundTilemap);
         }
     }
 }
