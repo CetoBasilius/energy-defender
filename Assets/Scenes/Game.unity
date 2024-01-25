@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 5
-  dragSpeed: 2
+  dragSpeed: 5
   tilemap: {fileID: 1627217911}
 --- !u!1 &884007872
 GameObject:
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 1627217911}
   - component: {fileID: 1627217910}
   m_Layer: 0
-  m_Name: Background
+  m_Name: LevelTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4863,6 +4863,8 @@ MonoBehaviour:
   testTowerPrefab: {fileID: 4267614621288253324, guid: 038f0c2b380a3e44ebad12cb4827599e, type: 3}
   towers: {fileID: 1487957094}
   tilemap: {fileID: 1627217911}
+  placeableColor: {r: 0, g: 1, b: 0, a: 1}
+  nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &2060130667
 GameObject:
   m_ObjectHideFlags: 0
