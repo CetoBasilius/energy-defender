@@ -1,27 +1,29 @@
 using System;
+using System.Collections.Generic;
 
 namespace Data
 {
     [Serializable]
     public class LevelData
     {
-        WaveData[] waves;
-        string[] tilemap;
+        public WaveData[] waves;
+        public Dictionary<string, string> tilemap;
+        public string[] tiledata;
     }
 
     [Serializable]
     public class WaveData
     {
-        string name;
-        float time;
-        EnemyWaveData[] enemies;
+        public string name;
+        public float time;
+        public EnemyWaveData[] enemies;
     }
 
     [Serializable]
     public class EnemyWaveData
     {
-        string name;
-        int count;
-        float delay;
+        public string name;
+        public int count;
+        public float delay;
     }
 }
