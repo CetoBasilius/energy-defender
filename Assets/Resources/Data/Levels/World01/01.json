@@ -1,0 +1,80 @@
+{
+    "waves": [
+        {
+            "name": "Wave 1",
+            "time": 0,
+            "enemies": [
+                {
+                    "name": "basic",
+                    "delay": 0,
+                    "count": 2
+                },
+                {
+                    "name": "basic",
+                    "delay": 5,
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "name": "Wave 2",
+            "time": 0,
+            "enemies": [
+                {
+                    "name": "swift",
+                    "delay": 0,
+                    "count": 3
+                },
+                {
+                    "name": "swift",
+                    "delay": 5,
+                    "count": 3
+                }
+            ]
+        },
+        {
+            "name": "Wave 3",
+            "time": 0,
+            "enemies": [
+                {
+                    "name": "swift",
+                    "delay": 0,
+                    "count": 2
+                },
+                {
+                    "name": "swift",
+                    "delay": 0,
+                    "count": 2
+                },
+                {
+                    "name": "swift",
+                    "delay": 5,
+                    "count": 3
+                },
+                {
+                    "name": "swift",
+                    "delay": 5,
+                    "count": 3
+                }
+            ]
+        }
+    ],
+    "tilemap": {
+        "B": "Tiles/World01/grass",
+        "P": "Tiles/World01/path",
+        "T": "Tiles/World01/tree",
+        "R": "Tiles/World01/rock"
+    },
+    "tiledata": [
+        "BTBBBBBRBBTBBBBRBBBBBBBRBBBTBBBB",
+        "BBBBBBBBBBBBBPPPPPBBTBBBBBBBBBBB",
+        "BBBBBBTBBBBBBPTBBPBBBBBBBBRBBBTB",
+        "BBBBBBBBBBBBBPBBBPBBTBBBBBBBBBBB",
+        "PPPPPPPPPBBBBPBBBPPPPPPPPPPPPPPP",
+        "BBBBBBBBPBRBBPBBBBBBBBBBBBBBBBBT",
+        "BBBBBBBBPPPPPPBBRBBBBBBBBBBRBBBB",
+        "BBBBBBBBBBBBBBBBBBBBBBTBBBBBBBBB",
+        "BBBBBBBBBBBTBBBBBBBBBBBBBBBBBBBB",
+        "BBRBBBBBBBBBBBBRBBBBBBBBBBBBBBRB"
+    ]
+}
