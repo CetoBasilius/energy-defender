@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // private LevelManager levelManager; // Is singleton, static methods
     public UIManager uiManager;
 
-
+    private float maxEnergy = 0;
     private float currentEnergy = 0;
     private bool isPaused = false;
 
@@ -37,8 +37,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LevelManager.SetLevel("World01/01"); // TODO: This will be able to be set from the main menu
-        gridManager.Setup(LevelManager.GetLevelData());
-
+        LevelData levelData = LevelManager.GetLevelData();
+        gridManager.Setup(levelData);
+        currentEnergy = levelData.startEnergy;
+        maxEnergy = levelData.maxEnergy;
     }
 
     void Update()
@@ -49,6 +51,10 @@ public class GameManager : MonoBehaviour
         }
 
         currentEnergy += energyPerSecond * Time.deltaTime;
+        if (currentEnergy > maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+        }
         uiManager.SetEnergy(currentEnergy);
     }
 

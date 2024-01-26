@@ -68,7 +68,7 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    internal static bool SetLevel(string levelName)
+    public static bool SetLevel(string levelName)
     {
         if (instance == null)
         {
@@ -85,7 +85,7 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
-    internal static LevelData GetLevelData()
+    public static LevelData GetLevelData()
     {
         if (instance == null)
         {

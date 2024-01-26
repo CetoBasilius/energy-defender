@@ -1,4 +1,6 @@
 {
+    "startEnergy": 5,
+    "maxEnergy": 60,
     "waves": [
         {
             "name": "Wave 1",
