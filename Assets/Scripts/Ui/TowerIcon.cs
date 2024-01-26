@@ -90,7 +90,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         // TODO: check eventData instead of Input.mousePosition
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         bool isTileAvailable = gridManager.IsTileAvailable(mousePosition);
-        Vector3Int cellPosition = gridManager.GetTileCell(mousePosition);
+        Vector3Int cellPosition = gridManager.GetTileCellPosition(mousePosition);
 
         gridManager.ColorCell(cellPosition, isTileAvailable ? placeableColor : nonPlaceableColor);
         lastCell = cellPosition;

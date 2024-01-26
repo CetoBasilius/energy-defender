@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
+using Gameplay;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -12,8 +13,12 @@ public class GridManager : MonoBehaviour
     public GameObject battlefield;
     private LevelData currentLevelData;
     private Vector3Int enemySpawnCell;
-    private LinkedList<Vector3Int> enemyPath;
 
+    private GridCell[,] gridCells;
+    private int tilemapWidth;
+    private int tilemapHeight;
+    private int tilemapStartX;
+    private int tilemapStartY;
 
     // Start is called before the first frame update
     void Start()
@@ -36,34 +41,32 @@ public class GridManager : MonoBehaviour
 
     private void BuildTilemap()
     {
-        string[] tiledata = this.currentLevelData.tiledata;
-        Dictionary<string, string> tilemap = this.currentLevelData.tilemap;
+        string[] tiledata = currentLevelData.tiledata;
+        Dictionary<string, string> tilemap = currentLevelData.tilemap;
 
         this.tilemap.ClearAllTiles();
 
-        int tilemapWidth = tiledata[0].Length;
-        int tilemapHeight = tiledata.Length;
+        tilemapWidth = tiledata[0].Length;
+        tilemapHeight = tiledata.Length;
+        tilemapStartX = -tilemapWidth / 2;
+        tilemapStartY = tilemapHeight / 2 - 1;
 
-        int tilemapStartX = -tilemapWidth / 2;
-        int tilemapStartY = tilemapHeight / 2 - 1;
-
-        int lastCol = tilemapStartX + tilemapWidth;
-
+        gridCells = new GridCell[tilemapWidth, tilemapHeight];
         for (int rowIndex = 0; rowIndex < tiledata.Length; rowIndex++)
         {
             string line = tiledata[rowIndex];
             for (int charCol = 0; charCol < line.Length; charCol++)
             {
                 char tileChar = line[charCol];
-                TileBase tile = Resources.Load<TileBase>(tilemap[tileChar.ToString()]);
-                if (tile)
+                string tilePath = tilemap[tileChar.ToString()];
+                TileBase tileBase = Resources.Load<TileBase>(tilePath);
+                if (tileBase)
                 {
-                    this.tilemap.SetTile(new Vector3Int(tilemapStartX + charCol, tilemapStartY - rowIndex, 0), tile);
-                    if (tileChar == 'P' && charCol == lastCol)
-                    {
-                        enemySpawnCell = new Vector3Int(charCol -1, rowIndex - 1, 0);
-                        Debug.Log("Enemy spawn cell: " + enemySpawnCell);
-                    }
+                    Vector3Int cellPosition = new Vector3Int(tilemapStartX + charCol, tilemapStartY - rowIndex, 0);
+                    GridCell gridCell = new GridCell(tileChar, tileBase, cellPosition);
+                    gridCells[charCol, rowIndex] = gridCell;
+
+                    this.tilemap.SetTile(cellPosition, tileBase);
                 }
             }
         }
@@ -71,23 +74,18 @@ public class GridManager : MonoBehaviour
 
     private void CalculateEnemyPath()
     {
-        // Check neighbor cells and add to path if available, ingore previous cell
+        enemySpawnCell = new Vector3Int(0, 0, 0);
     }
 
     public bool IsTileAvailable(Vector3 mousePosition)
     {
         Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
-        TileBase tilebase = tilemap.GetTile(cellPosition);
+        Vector2Int gridPosition = new Vector2Int(cellPosition.x - tilemapStartX, tilemapStartY - cellPosition.y);
 
-        if (tilebase == null)
+        GridCell gridCell = gridCells[gridPosition.x, gridPosition.y];
+        if (gridCell != null)
         {
-            return false;
-        }
-
-        // TODO: Implement available tiles (grass and not already occupied by a tower)
-        if (tilebase.name == "grass")
-        {
-            return true;
+            return gridCell.isAvailable();
         }
 
         return false;
@@ -105,8 +103,10 @@ public class GridManager : MonoBehaviour
         snapPosition.z = tower.transform.position.z;
         tower.transform.position = snapPosition;
 
-        // TODO: Set tile to tower so no other tower can be placed there or improve placement logic
-        // TODO: Activate tower
+        Vector2Int gridPosition = new Vector2Int(cellPosition.x - tilemapStartX, tilemapStartY - cellPosition.y);
+        gridCells[gridPosition.x, gridPosition.y].tower = tower;
+
+        tower.Activate();
     }
 
     public void ColorCell(Vector3Int cellPosition, Color color)
@@ -115,7 +115,7 @@ public class GridManager : MonoBehaviour
         tilemap.SetColor(cellPosition, color);
     }
 
-    internal Vector3Int GetTileCell(Vector3 mousePosition)
+    internal Vector3Int GetTileCellPosition(Vector3 mousePosition)
     {
         Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
 
