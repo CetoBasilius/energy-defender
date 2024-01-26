@@ -11,7 +11,6 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public GridManager gridManager;
     public GameObject towerPrefab;
     public GameObject battlefield;
-    public Tilemap tilemap;
     public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
