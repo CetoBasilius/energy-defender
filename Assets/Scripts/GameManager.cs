@@ -9,7 +9,17 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    public Tilemap backgroundTilemap;
+    public int energyPerSecond = 1;
+    public Tilemap backgroundTilemap; // TODO: replace with GridManager
+
+    // public GridManager gridManager;
+    // private LevelManager levelManager; // Is singleton, static methods
+    public UIManager uiManager;
+
+
+    private float currentEnergy = 0;
+    private bool isPaused = false;
+
     private static TowersData towersData;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -34,11 +44,35 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
 
+        currentEnergy += energyPerSecond * Time.deltaTime;
+        uiManager.SetEnergy(currentEnergy);
     }
 
     public TowerData GetTowerData(string dataType)
     {
         return towersData.ContainsKey(dataType) ? towersData[dataType] : null;
+    }
+
+    public float GetCurrentEnergy()
+    {
+        return currentEnergy;
+    }
+
+    public bool SpendEnergy(float energy)
+    {
+        if (energy > currentEnergy)
+        {
+            return false;
+        }
+
+        currentEnergy -= energy;
+        uiManager.SetEnergy(currentEnergy);
+
+        return true;
     }
 }
