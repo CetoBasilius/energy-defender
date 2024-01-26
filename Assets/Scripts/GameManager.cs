@@ -62,4 +62,17 @@ public class GameManager : MonoBehaviour
     {
         return currentEnergy;
     }
+
+    public bool SpendEnergy(float energy)
+    {
+        if (energy > currentEnergy)
+        {
+            return false;
+        }
+
+        currentEnergy -= energy;
+        uiManager.SetEnergy(currentEnergy);
+
+        return true;
+    }
 }
