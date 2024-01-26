@@ -788,7 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyPerSecond: 1
-  backgroundTilemap: {fileID: 1627217911}
+  gridManager: {fileID: 2064666670}
   uiManager: {fileID: 1256573637}
 --- !u!4 &368317328
 Transform:
@@ -6647,6 +6647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdaf4c6002ed21408cc1a96682598b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilemap: {fileID: 1627217911}
 --- !u!1 &2122067874
 GameObject:
   m_ObjectHideFlags: 0

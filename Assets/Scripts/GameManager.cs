@@ -10,9 +10,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public int energyPerSecond = 1;
-    public Tilemap backgroundTilemap; // TODO: replace with GridManager
-
-    // public GridManager gridManager;
+    public GridManager gridManager;
     // private LevelManager levelManager; // Is singleton, static methods
     public UIManager uiManager;
 
@@ -38,8 +36,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LevelManager.Setup(backgroundTilemap);
         LevelManager.SetLevel("World01/01"); // TODO: This will be able to be set from the main menu
+        gridManager.Setup(LevelManager.GetLevelData());
+
     }
 
     void Update()
