@@ -12,7 +12,12 @@ public class UIManager : MonoBehaviour
 
     public void SetEnergy(float currentEnergy)
     {
-        energyPanel.Set(currentEnergy);
+        energyPanel.SetInt(currentEnergy);
+    }
+
+    public void SetWave(int currentWave, int totalWaves)
+    {
+        wavePanel.Set("Wave " + currentWave + '/' + totalWaves);
     }
 
     public void LockCamera()

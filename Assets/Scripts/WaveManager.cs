@@ -8,6 +8,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public GridManager gridManager;
+    public UIManager uiManager;
     private WaveData[] waves;
     private int currentWaveIndex = 0;
     private float currentWaveTime = 0;
@@ -69,6 +70,7 @@ public class WaveManager : MonoBehaviour
         // Wave Start
         this.currentWaveQueue = new Queue<EnemyWaveData>(this.waves[this.currentWaveIndex].enemies);
         this.currentEnemyWaveData = this.currentWaveQueue.Dequeue();
+        uiManager.SetWave(currentWaveIndex + 1, this.waves.Length);
     }
 
     private void SpawnEnemies()
