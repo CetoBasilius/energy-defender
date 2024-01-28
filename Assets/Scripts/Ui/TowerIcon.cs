@@ -69,7 +69,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             {
                 Destroy(draggedTower);
             }
-            else
+            else if (gameManager.SpendEnergy(towerData.energyCost))
             {
                 // TODO: this should be handled by a tower manager or game manager, not the TowerDrag script
 
@@ -85,6 +85,10 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 // TODO: Register tower with gridManager
 
                 draggedTower = null;
+            }
+            else
+            {
+                Destroy(draggedTower);
             }
         }
         else
