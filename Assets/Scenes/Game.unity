@@ -789,8 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyPerSecond: 1
   backgroundTilemap: {fileID: 1627217911}
-  levelManager: {fileID: 0}
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 1256573637}
 --- !u!4 &368317328
 Transform:
   m_ObjectHideFlags: 0
