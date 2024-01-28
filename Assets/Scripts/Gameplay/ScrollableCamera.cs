@@ -7,7 +7,7 @@ public class ScrollableCamera : MonoBehaviour
     public float scrollSpeed = 5f;
     public float dragSpeed = 5f;
     private Vector3 dragOrigin;
-    private bool enableScroll = true;
+    private bool lockedScroll = true;
     public Tilemap tilemap;
 
     private void Update()
@@ -54,7 +54,7 @@ public class ScrollableCamera : MonoBehaviour
 
     private void MoveCamera(float deltaX, float deltaY, float speed)
     {
-        if (!enableScroll)
+        if (!lockedScroll)
         {
             return;
         }
@@ -83,8 +83,13 @@ public class ScrollableCamera : MonoBehaviour
         transform.position = clampedPosition;
     }
 
-    public void SetEnabled(bool enabled)
+    public void SetLocked(bool locked)
     {
-        this.enableScroll = enabled;
+        this.lockedScroll = locked;
+    }
+
+    public bool IsLocked()
+    {
+        return this.lockedScroll;
     }
 }

@@ -15,7 +15,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
-    public ScrollableCamera scrollableCamera;
+    public UIManager uiManager;
 
     private GameObject draggedTower;
     private Vector3Int lastCell;
@@ -28,11 +28,23 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         energyCostText.text = energyCost.ToString();
     }
 
+    void Update()
+    {
+        if (towerData.energyCost > gameManager.GetCurrentEnergy())
+        {
+            energyCostText.color = Color.red;
+        }
+        else
+        {
+            energyCostText.color = Color.white;
+        }
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         draggedTower = Instantiate(towerPrefab);
         draggedTower.transform.SetParent(battlefield.transform, false);
-        scrollableCamera.SetEnabled(false); // TODO: This should be handled by a UI manager, not the scrollable camera to prevent coupling, but life is short
+        uiManager.LockCamera();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -81,7 +93,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         ClearLastCell();
-        scrollableCamera.SetEnabled(true); // TODO: This should be handled by a UI manager, not the scrollable camera to prevent coupling, but life is short
+        uiManager.UnlockCamera();
     }
 
     private TileBase GetGridTileUnderMouse()
