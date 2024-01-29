@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GridManager gridManager;
     // private LevelManager levelManager; // Is singleton, static methods
     public UIManager uiManager;
+    public WaveManager waveManager;
 
     private float maxEnergy = 0;
     private float currentEnergy = 0;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         gridManager.Setup(levelData);
         currentEnergy = levelData.startEnergy;
         maxEnergy = levelData.maxEnergy;
+        waveManager.Setup(levelData.waves);
     }
 
     void Update()

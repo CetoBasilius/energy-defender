@@ -177,10 +177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataType: solar
   gameManager: {fileID: 368317327}
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 5ef03983ee8d9c547b14b7e853e76157, type: 3}
   battlefield: {fileID: 1487957094}
-  tilemap: {fileID: 1627217911}
   energyCostText: {fileID: 77907804}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -789,8 +788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyPerSecond: 1
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   uiManager: {fileID: 1256573637}
+  waveManager: {fileID: 1814516973}
 --- !u!4 &368317328
 Transform:
   m_ObjectHideFlags: 0
@@ -892,12 +892,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1000}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.1975245, y: -5.484377, z: -99.79407}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1256573638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -1102,10 +1102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataType: machinegun
   gameManager: {fileID: 368317327}
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 045788dd28de47e4b9bd64dc0e86047f, type: 3}
   battlefield: {fileID: 1487957094}
-  tilemap: {fileID: 1627217911}
   energyCostText: {fileID: 1179060616}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1987,13 +1986,62 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256573636}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.1975245, y: 5.484377, z: -900.20593}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 519420032}
+  - {fileID: 1412889976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1344948323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344948324}
+  - component: {fileID: 1344948325}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344948324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344948323}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.94708943, y: -0.23579662, z: -900.2728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2064666669}
+  - {fileID: 1487957095}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1344948325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344948323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdaf4c6002ed21408cc1a96682598b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 1627217911}
 --- !u!1 &1412889972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2139,7 @@ RectTransform:
   - {fileID: 905013781}
   - {fileID: 1138995999}
   - {fileID: 1927013028}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1256573638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2152,10 +2200,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataType: missile
   gameManager: {fileID: 368317327}
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: e533c896eb0a17849accd2130d67c47f, type: 3}
   battlefield: {fileID: 1487957094}
-  tilemap: {fileID: 1627217911}
   energyCostText: {fileID: 1242932762}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -2222,12 +2269,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487957094}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3238096, y: -0.50064516, z: -0.048765175}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3767202, y: -0.26484853, z: 900.22406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1344948324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1516633686
 GameObject:
@@ -2358,10 +2405,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataType: sniper
   gameManager: {fileID: 368317327}
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 46b8db6c0ef205b4ba90be728bac6453, type: 3}
   battlefield: {fileID: 1487957094}
-  tilemap: {fileID: 1627217911}
   energyCostText: {fileID: 349151129}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -6260,6 +6306,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1814516972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814516974}
+  - component: {fileID: 1814516973}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1814516973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814516972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d31501250fbb9443b6e6829c3630071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1814516974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814516972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.94708943, y: -0.23579662, z: -900.2728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1927013027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6443,10 +6533,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataType: cannon
   gameManager: {fileID: 368317327}
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 96faece0baa26f04baf3431e5c13dd83, type: 3}
   battlefield: {fileID: 1487957094}
-  tilemap: {fileID: 1627217911}
   energyCostText: {fileID: 355763159}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -6604,7 +6693,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2064666669}
   - component: {fileID: 2064666668}
-  - component: {fileID: 2064666670}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -6632,27 +6720,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064666667}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.94708943, y: 0.23579662, z: 900.2728}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1627217909}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1344948324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2064666670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064666667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bdaf4c6002ed21408cc1a96682598b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilemap: {fileID: 1627217911}
 --- !u!1 &2122067874
 GameObject:
   m_ObjectHideFlags: 0
@@ -6707,10 +6782,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataType: power
   gameManager: {fileID: 368317327}
-  gridManager: {fileID: 2064666670}
+  gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: f0d35291844730642bd36adae24516fc, type: 3}
   battlefield: {fileID: 1487957094}
-  tilemap: {fileID: 1627217911}
   energyCostText: {fileID: 824999624}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -6833,9 +6907,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 368317328}
-  - {fileID: 1256573638}
-  - {fileID: 519420032}
-  - {fileID: 1412889976}
   - {fileID: 2060130670}
-  - {fileID: 2064666669}
-  - {fileID: 1487957095}
+  - {fileID: 1256573638}
+  - {fileID: 1344948324}
+  - {fileID: 1814516974}
