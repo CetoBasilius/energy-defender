@@ -14,16 +14,15 @@ public class LevelManager : MonoBehaviour
 
     private bool initialized = false;
     private LevelData currentLevelData;
-    private Tilemap backgroundTilemap;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     internal static void CreateInstance()
     {
         if (!instance)
         {
-            GameObject gameManagerObject = new GameObject("LevelManager", typeof(LevelManager));
-            DontDestroyOnLoad(gameManagerObject);
-            gameManagerObject.transform.SetParent(null);
+            GameObject levelManagerObject = new GameObject("LevelManager", typeof(LevelManager));
+            DontDestroyOnLoad(levelManagerObject);
+            levelManagerObject.transform.SetParent(null);
         }
     }
 
@@ -53,34 +52,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void buildBackgroundTilemap()
-    {
-        string[] tiledata = this.currentLevelData.tiledata;
-        Dictionary<string, string> tilemap = this.currentLevelData.tilemap;
-
-        this.backgroundTilemap.ClearAllTiles();
-
-        int tilemapWidth = tiledata[0].Length;
-        int tilemapHeight = tiledata.Length;
-
-        int tilemapStartX = -tilemapWidth / 2;
-        int tilemapStartY = tilemapHeight / 2 - 1;
-
-        for (int rowIndex = 0; rowIndex < tiledata.Length; rowIndex++)
-        {
-            string line = tiledata[rowIndex];
-            for (int charCol = 0; charCol < line.Length; charCol++)
-            {
-                char tileChar = line[charCol];
-                TileBase tile = Resources.Load<TileBase>(tilemap[tileChar.ToString()]);
-                if (tile)
-                {
-                    this.backgroundTilemap.SetTile(new Vector3Int(tilemapStartX + charCol, tilemapStartY - rowIndex, 0), tile);
-                }
-            }
-        }
-    }
-
     private bool LoadLevelData(string levelName = "01")
     {
         try
@@ -97,11 +68,6 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
-    private void SetTilemap(Tilemap backgroundTilemap)
-    {
-        this.backgroundTilemap = backgroundTilemap;
-    }
-
     internal static bool SetLevel(string levelName)
     {
         if (instance == null)
@@ -110,27 +76,29 @@ public class LevelManager : MonoBehaviour
             return false;
         }
 
-        if (instance.backgroundTilemap == null)
-        {
-            Debug.Log("Tilemap not set in the inspector");
-            return false;
-        }
 
         if (!instance.LoadLevelData(levelName))
         {
             return false;
         }
 
-        instance.buildBackgroundTilemap();
-
         return true;
     }
 
-    internal static void Setup(Tilemap backgroundTilemap)
+    internal static LevelData GetLevelData()
     {
-        if (instance)
+        if (instance == null)
         {
-            instance.SetTilemap(backgroundTilemap);
+            Debug.LogError("LevelManager not initialized");
+            return null;
         }
+
+        if (instance.currentLevelData == null)
+        {
+            Debug.LogError("No level data loaded");
+            return null;
+        }
+
+        return instance.currentLevelData;
     }
 }
