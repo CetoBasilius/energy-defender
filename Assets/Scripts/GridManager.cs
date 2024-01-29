@@ -2,13 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
     public Tilemap tilemap;
+    public GameObject battlefield;
     private LevelData currentLevelData;
+    private Vector3Int enemySpawnCell;
+    private LinkedList<Vector3Int> enemyPath;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,7 @@ public class GridManager : MonoBehaviour
     {
         this.currentLevelData = levelData;
         this.BuildTilemap();
+        this.CalculateEnemyPath();
     }
 
     private void BuildTilemap()
@@ -41,6 +47,8 @@ public class GridManager : MonoBehaviour
         int tilemapStartX = -tilemapWidth / 2;
         int tilemapStartY = tilemapHeight / 2 - 1;
 
+        int lastCol = tilemapStartX + tilemapWidth;
+
         for (int rowIndex = 0; rowIndex < tiledata.Length; rowIndex++)
         {
             string line = tiledata[rowIndex];
@@ -51,9 +59,19 @@ public class GridManager : MonoBehaviour
                 if (tile)
                 {
                     this.tilemap.SetTile(new Vector3Int(tilemapStartX + charCol, tilemapStartY - rowIndex, 0), tile);
+                    if (tileChar == 'P' && charCol == lastCol)
+                    {
+                        enemySpawnCell = new Vector3Int(charCol -1, rowIndex - 1, 0);
+                        Debug.Log("Enemy spawn cell: " + enemySpawnCell);
+                    }
                 }
             }
         }
+    }
+
+    private void CalculateEnemyPath()
+    {
+        // Check neighbor cells and add to path if available, ingore previous cell
     }
 
     public bool IsTileAvailable(Vector3 mousePosition)
@@ -73,6 +91,11 @@ public class GridManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void AddTower(GameObject tower)
+    {
+        tower.transform.SetParent(battlefield.transform, false);
     }
 
     public void PlaceTower(Vector3 mousePosition, Tower tower)
@@ -95,7 +118,14 @@ public class GridManager : MonoBehaviour
     internal Vector3Int GetTileCell(Vector3 mousePosition)
     {
         Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
-        
+
         return cellPosition;
+    }
+
+    internal void AddEnemy(GameObject enemy)
+    {
+        enemy.transform.SetParent(battlefield.transform, false);
+        enemy.transform.position = tilemap.GetCellCenterWorld(enemySpawnCell);
+        enemy.transform.position.Set(enemy.transform.position.x, enemy.transform.position.y, -1);
     }
 }

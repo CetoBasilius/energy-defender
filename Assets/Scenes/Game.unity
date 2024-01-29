@@ -179,7 +179,6 @@ MonoBehaviour:
   gameManager: {fileID: 368317327}
   gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 5ef03983ee8d9c547b14b7e853e76157, type: 3}
-  battlefield: {fileID: 1487957094}
   energyCostText: {fileID: 77907804}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -800,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 368317326}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9514956, y: 3.2662168, z: 8.579494}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -893,7 +892,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1975245, y: -5.484377, z: -99.79407}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1104,7 +1103,6 @@ MonoBehaviour:
   gameManager: {fileID: 368317327}
   gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 045788dd28de47e4b9bd64dc0e86047f, type: 3}
-  battlefield: {fileID: 1487957094}
   energyCostText: {fileID: 1179060616}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -1987,7 +1985,7 @@ Transform:
   m_GameObject: {fileID: 1256573636}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1975245, y: 5.484377, z: -900.20593}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2021,7 +2019,7 @@ Transform:
   m_GameObject: {fileID: 1344948323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94708943, y: -0.23579662, z: -900.2728}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2042,6 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1627217911}
+  battlefield: {fileID: 1487957094}
 --- !u!1 &1412889972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,7 +2201,6 @@ MonoBehaviour:
   gameManager: {fileID: 368317327}
   gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: e533c896eb0a17849accd2130d67c47f, type: 3}
-  battlefield: {fileID: 1487957094}
   energyCostText: {fileID: 1242932762}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -2270,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 1487957094}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3767202, y: -0.26484853, z: 900.22406}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2407,7 +2405,6 @@ MonoBehaviour:
   gameManager: {fileID: 368317327}
   gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 46b8db6c0ef205b4ba90be728bac6453, type: 3}
-  battlefield: {fileID: 1487957094}
   energyCostText: {fileID: 349151129}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -6335,6 +6332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d31501250fbb9443b6e6829c3630071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridManager: {fileID: 1344948325}
 --- !u!4 &1814516974
 Transform:
   m_ObjectHideFlags: 0
@@ -6344,7 +6342,7 @@ Transform:
   m_GameObject: {fileID: 1814516972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94708943, y: -0.23579662, z: -900.2728}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6535,7 +6533,6 @@ MonoBehaviour:
   gameManager: {fileID: 368317327}
   gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: 96faece0baa26f04baf3431e5c13dd83, type: 3}
-  battlefield: {fileID: 1487957094}
   energyCostText: {fileID: 355763159}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}
@@ -6721,7 +6718,7 @@ Transform:
   m_GameObject: {fileID: 2064666667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.94708943, y: 0.23579662, z: 900.2728}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6784,7 +6781,6 @@ MonoBehaviour:
   gameManager: {fileID: 368317327}
   gridManager: {fileID: 1344948325}
   towerPrefab: {fileID: 4267614621288253324, guid: f0d35291844730642bd36adae24516fc, type: 3}
-  battlefield: {fileID: 1487957094}
   energyCostText: {fileID: 824999624}
   placeableColor: {r: 0, g: 1, b: 0, a: 1}
   nonPlaceableColor: {r: 1, g: 0, b: 0, a: 1}

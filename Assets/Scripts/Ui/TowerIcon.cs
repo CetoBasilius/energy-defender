@@ -10,7 +10,6 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public GameManager gameManager;
     public GridManager gridManager;
     public GameObject towerPrefab;
-    public GameObject battlefield;
     public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
@@ -42,7 +41,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         draggedTower = Instantiate(towerPrefab);
-        draggedTower.transform.SetParent(battlefield.transform, false);
+        gridManager.AddTower(draggedTower);
         uiManager.LockCamera();
     }
 
