@@ -55,4 +55,47 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public bool IsTileAvailable(Vector3 mousePosition)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+        TileBase tilebase = tilemap.GetTile(cellPosition);
+
+        if (tilebase == null)
+        {
+            return false;
+        }
+
+        // TODO: Implement available tiles (grass and not already occupied by a tower)
+        if (tilebase.name == "grass")
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void PlaceTower(Vector3 mousePosition, Tower tower)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+        Vector3 snapPosition = tilemap.GetCellCenterWorld(cellPosition);
+        snapPosition.z = tower.transform.position.z;
+        tower.transform.position = snapPosition;
+
+        // TODO: Set tile to tower so no other tower can be placed there or improve placement logic
+        // TODO: Activate tower
+    }
+
+    public void ColorCell(Vector3Int cellPosition, Color color)
+    {
+        tilemap.SetTileFlags(cellPosition, TileFlags.None);
+        tilemap.SetColor(cellPosition, color);
+    }
+
+    internal Vector3Int GetTileCell(Vector3 mousePosition)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+        
+        return cellPosition;
+    }
 }
