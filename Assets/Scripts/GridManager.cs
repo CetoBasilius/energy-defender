@@ -88,7 +88,6 @@ public class GridManager : MonoBehaviour
                             {
                                 baseCornerPath = true;
                                 baseCell = gridCell;
-                                ColorCell(gridCell.cellPosition, Color.green);
                             }
                             else
                             {
@@ -126,7 +125,6 @@ public class GridManager : MonoBehaviour
 
             if (lastPathCell != null)
             {
-                ColorCell(lastPathCell.cellPosition, Color.red);
                 enemySpawn = lastPathCell;
             }
         }
