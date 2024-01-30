@@ -20,10 +20,15 @@ public class Counter : MonoBehaviour
         
     }
 
-    public void Set(float number)
+    public void SetInt(float number)
     {
         this.currentNumber = number;
         int numberInt = (int) Math.Floor(number);
         this.counterText.text = numberInt.ToString();
+    }
+
+    public void Set(string text)
+    {
+        this.counterText.text = text;
     }
 }

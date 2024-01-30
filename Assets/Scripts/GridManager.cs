@@ -92,7 +92,6 @@ public class GridManager : MonoBehaviour
                             }
                             else
                             {
-                                ColorCell(gridCell.cellPosition, Color.magenta);
                                 cornerPathCells.Add(gridCell);
                             }
                         }
@@ -104,13 +103,11 @@ public class GridManager : MonoBehaviour
                         {
                             if (cornerPathCells.Contains(lastPathCell)) // Is not corner
                             {
-                                ColorCell(lastPathCell.cellPosition, Color.cyan);
                                 cornerPathCells.Remove(lastPathCell);
                                 verticalPathCells.Add(lastPathCell);
                             }
                             else
                             {
-                                ColorCell(lastPathCell.cellPosition, Color.yellow);
                                 if (baseCornerPath)
                                 {
                                     baseCornerPath = false;
@@ -179,17 +176,11 @@ public class GridManager : MonoBehaviour
         if (previousVerticalCell != null)
         {
             Debug.Log("Found previous corner cell");
-            ColorCell(previousVerticalCell.cellPosition, Color.blue);
             // TODO: get next corner cell
             GridCell nextCorner = previousVerticalCell.GetFirstPrevious();
-            ColorCell(nextCorner.cellPosition, new Color(1f, 0.5f, 0.5f, 1f));
             cornerPathCells.Remove(nextCorner);
             FindPreviousVerticalCell(nextCorner);
             return;
-        }
-        else
-        {
-            Debug.Log("No previous corner cell found");
         }
 
         foreach (GridCell verticalCell in verticalPathCells)
@@ -213,14 +204,8 @@ public class GridManager : MonoBehaviour
 
         if (previousVerticalCell != null)
         {
-            Debug.Log("Found previous vertical cell");
-            ColorCell(previousVerticalCell.cellPosition, Color.blue);
             verticalPathCells.Remove(previousVerticalCell);
             FindPreviousVerticalCell(previousVerticalCell);
-        }
-        else
-        {
-            Debug.Log("No previous vertical cell found");
         }
     }
 
