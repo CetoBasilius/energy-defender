@@ -8,6 +8,8 @@ public class Enemy : GameUnit
     GridCell currentCell;
     GridCell nextCell;
 
+    GridCell targetCell;
+
     public GameObject turret;
     public GameObject body;
     public Tread leftTread;
@@ -49,14 +51,22 @@ public class Enemy : GameUnit
         float angleDifference = Mathf.DeltaAngle(currentAngle, desiredAngle);
         float rotationAmount = Mathf.Sign(angleDifference) * Mathf.Min(Mathf.Abs(angleDifference), 0.5f);
         body.transform.Rotate(0, 0, rotationAmount);
-        // Rotate turret to face the next cell
-        Vector3 turretDirection = nextCell.GetPosition() - turret.transform.position;
-        float turretAngle = Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg;
-        turret.transform.rotation = Quaternion.AngleAxis(turretAngle - 90, Vector3.forward);
 
+        // Do the same for the turret
+        if (targetCell != null)
+        {
+            Vector3 turretDirection = targetCell.GetPosition() - turret.transform.position;
+            float desiredTurretAngle = Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg - 90;
+            float currentTurretAngle = turret.transform.rotation.eulerAngles.z;
+            float turretAngleDifference = Mathf.DeltaAngle(currentTurretAngle, desiredTurretAngle);
+            float turretRotationAmount = Mathf.Sign(turretAngleDifference) * Mathf.Min(Mathf.Abs(turretAngleDifference), 0.3f);
+            turret.transform.Rotate(0, 0, turretRotationAmount);
+        }
+        
         if (Vector3.Distance(transform.position, nextCell.GetPosition()) < 0.1f)
         {
             SetCurrentCell(nextCell);
+            targetCell = nextCell.nextPathCell;
         }
     }
 
