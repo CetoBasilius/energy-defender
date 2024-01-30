@@ -1,4 +1,6 @@
 {
+    "startEnergy": 5,
+    "maxEnergy": 60,
     "waves": [
         {
             "name": "Wave 1",
@@ -7,12 +9,12 @@
                 {
                     "name": "basic",
                     "delay": 0,
-                    "count": 2
+                    "count": 1
                 },
                 {
                     "name": "basic",
                     "delay": 5,
-                    "count": 2
+                    "count": 1
                 }
             ]
         },
@@ -23,12 +25,12 @@
                 {
                     "name": "swift",
                     "delay": 0,
-                    "count": 3
+                    "count": 1
                 },
                 {
                     "name": "swift",
                     "delay": 5,
-                    "count": 3
+                    "count": 1
                 }
             ]
         },
@@ -39,22 +41,22 @@
                 {
                     "name": "swift",
                     "delay": 0,
-                    "count": 2
+                    "count": 1
                 },
                 {
                     "name": "swift",
                     "delay": 0,
-                    "count": 2
+                    "count": 1
                 },
                 {
                     "name": "swift",
                     "delay": 5,
-                    "count": 3
+                    "count": 1
                 },
                 {
                     "name": "swift",
                     "delay": 5,
-                    "count": 3
+                    "count": 1
                 }
             ]
         }

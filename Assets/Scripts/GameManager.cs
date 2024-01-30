@@ -10,13 +10,12 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public int energyPerSecond = 1;
-    public Tilemap backgroundTilemap; // TODO: replace with GridManager
-
-    // public GridManager gridManager;
+    public GridManager gridManager;
     // private LevelManager levelManager; // Is singleton, static methods
     public UIManager uiManager;
+    public WaveManager waveManager;
 
-
+    private float maxEnergy = 0;
     private float currentEnergy = 0;
     private bool isPaused = false;
 
@@ -38,8 +37,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        LevelManager.Setup(backgroundTilemap);
         LevelManager.SetLevel("World01/01"); // TODO: This will be able to be set from the main menu
+        LevelData levelData = LevelManager.GetLevelData();
+        gridManager.Setup(levelData);
+        currentEnergy = levelData.startEnergy;
+        maxEnergy = levelData.maxEnergy;
+        waveManager.Setup(levelData.waves);
     }
 
     void Update()
@@ -50,6 +53,10 @@ public class GameManager : MonoBehaviour
         }
 
         currentEnergy += energyPerSecond * Time.deltaTime;
+        if (currentEnergy > maxEnergy)
+        {
+            currentEnergy = maxEnergy;
+        }
         uiManager.SetEnergy(currentEnergy);
     }
 
