@@ -58,12 +58,13 @@ public class LevelManager : MonoBehaviour
         {
             TextAsset levelDataString = Resources.Load<TextAsset>("Data/Levels/" + levelName);
             this.currentLevelData = JsonConvert.DeserializeObject<LevelData>(levelDataString.text);
+            this.currentLevelData.name = levelName;
 
             return true;
         }
         catch (Exception e)
         {
-            Debug.Log("Error loading level data:" + e);
+            Debug.Log("Error loading level data for " + levelName + ": " + e.Message);
         }
         return false;
     }

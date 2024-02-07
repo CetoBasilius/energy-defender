@@ -6,6 +6,7 @@ namespace Data
     [Serializable]
     public class LevelData
     {
+        public string name;
         public int startEnergy;
         public int maxEnergy;
         public WaveData[] waves;
