@@ -1,0 +1,32 @@
+{
+    "basic": {
+        "name": "Basic Invader",
+        "description": "Standard enemy, stops to attack any tower it finds within range.",
+        "health": 100,
+        "speed": 60,
+        "attacksTowers": 1,
+        "range": 2,
+        "attackDamage": 10,
+        "attackRate": 2
+    },
+    "swift": {
+        "name": "Swift Runner",
+        "description": "Fast enemy, stops to attack any defense tower it finds within range.",
+        "health": 30,
+        "speed": 100,
+        "attacksTowers": 2,
+        "range": 2,
+        "attackDamage": 20,
+        "attackRate": 3
+    },
+    "armored": {
+        "name": "Armored Behemoth",
+        "description": "Slow enemy, stops to attack any tower it finds within range.",
+        "health": 200,
+        "speed": 30,
+        "attacksTowers": 3,
+        "range": 4,
+        "attackDamage": 40,
+        "attackRate": 5
+    }
+}

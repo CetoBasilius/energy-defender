@@ -20,18 +20,38 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
 
     private static TowersData towersData;
+    private static EnemiesData enemiesData;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Initialize()
+    {
+        LoadTowerData();
+        LoadEnemyData();
+    }
+
     private static void LoadTowerData()
     {
         try
         {
-            TextAsset levelDataString = Resources.Load<TextAsset>("Data/towers");
-            towersData = JsonConvert.DeserializeObject<TowersData>(levelDataString.text);
+            TextAsset towerDataString = Resources.Load<TextAsset>("Data/towers");
+            towersData = JsonConvert.DeserializeObject<TowersData>(towerDataString.text);
         }
         catch (Exception e)
         {
             Debug.Log("Error loading tower data:" + e);
+        }
+    }
+
+    private static void LoadEnemyData()
+    {
+        try
+        {
+            TextAsset levelDataString = Resources.Load<TextAsset>("Data/enemies");
+            enemiesData = JsonConvert.DeserializeObject<EnemiesData>(levelDataString.text);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Error loading enemy data:" + e);
         }
     }
 
@@ -63,6 +83,11 @@ public class GameManager : MonoBehaviour
     public TowerData GetTowerData(string dataType)
     {
         return towersData.ContainsKey(dataType) ? towersData[dataType] : null;
+    }
+
+    public EnemyData GetEnemyData(string dataType)
+    {
+        return enemiesData.ContainsKey(dataType) ? enemiesData[dataType] : null;
     }
 
     public float GetCurrentEnergy()
