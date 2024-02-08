@@ -91,27 +91,6 @@ public class GridManager : UnitFactory
         return false;
     }
 
-    public GameObject AddTower(string id)
-    {
-        GameObject tower = CreateTower(id);
-        tower.transform.SetParent(battlefield.transform, false);
-
-        return tower;
-    }
-
-    public void PlaceTower(Vector3 mousePosition, Tower tower)
-    {
-        Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
-        Vector3 snapPosition = tilemap.GetCellCenterWorld(cellPosition);
-        snapPosition.z = tower.transform.position.z;
-        tower.transform.position = snapPosition;
-
-        Vector2Int gridPosition = new Vector2Int(cellPosition.x - tilemapStartX, tilemapStartY - cellPosition.y);
-        gridCells[gridPosition.x, gridPosition.y].tower = tower;
-
-        tower.Activate();
-    }
-
     public void ColorCell(Vector3Int cellPosition, Color color)
     {
         tilemap.SetTileFlags(cellPosition, TileFlags.None);
@@ -125,6 +104,30 @@ public class GridManager : UnitFactory
         return cellPosition;
     }
 
+    // Tower is added to the battlefield, but not placed yet
+    public GameObject AddTower(string id)
+    {
+        GameObject tower = CreateTower(id);
+        tower.transform.SetParent(battlefield.transform, false);
+
+        return tower;
+    }
+
+    // Places an already added tower to the battlefield and activates it
+    public void PlaceTower(Vector3 mousePosition, Tower tower)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
+        Vector3 snapPosition = tilemap.GetCellCenterWorld(cellPosition);
+        snapPosition.z = tower.transform.position.z;
+        tower.transform.position = snapPosition;
+
+        Vector2Int gridPosition = new Vector2Int(cellPosition.x - tilemapStartX, tilemapStartY - cellPosition.y);
+        gridCells[gridPosition.x, gridPosition.y].tower = tower;
+
+        tower.Activate();
+    }
+
+    // Enemy is spawned at the spawn point on the battlefield
     public void SpawnEnemy(string id)
     {
         GameObject enemy = CreateEnemy(id);

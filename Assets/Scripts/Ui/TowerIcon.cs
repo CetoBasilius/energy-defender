@@ -12,10 +12,13 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
+    // Light orange
+    public Color expensiveColor = new Color(1, 0.7f, 0.2f);
     public UIManager uiManager;
     private GameObject draggedTower;
     private Vector3Int lastCell;
     private int energyCost;
+    private bool isExpensive = false;
 
     void Start()
     {
@@ -25,13 +28,20 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     void Update()
     {
+        bool wasExpensive = isExpensive;
         if (energyCost > gameManager.GetCurrentEnergy())
         {
+            isExpensive = true;
             energyCostText.color = Color.red;
         }
         else
         {
+            isExpensive = false;
             energyCostText.color = Color.white;
+        }
+        if (wasExpensive != isExpensive && lastCell != null && draggedTower != null)
+        {
+            UpdateTileColor();
         }
     }
 
@@ -88,7 +98,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         bool isTileAvailable = gridManager.IsTileAvailable(mousePosition);
         Vector3Int cellPosition = gridManager.GetTileCellPosition(mousePosition);
 
-        gridManager.ColorCell(cellPosition, isTileAvailable ? placeableColor : nonPlaceableColor);
+        gridManager.ColorCell(cellPosition, isTileAvailable ? (isExpensive ? expensiveColor : placeableColor) : nonPlaceableColor);
         lastCell = cellPosition;
     }
 }
