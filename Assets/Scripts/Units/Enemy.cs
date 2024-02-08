@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using Gameplay;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class Enemy : GameUnit
     private float speed = 0.5f;
 
     private Vector2 treadSpeed = new Vector2(0, 0);
+    private EnemyData enemyData;
+
     void Start()
     {
         leftTread.speed = treadSpeed;
@@ -39,7 +42,7 @@ public class Enemy : GameUnit
             treadSpeed.y = 0f;
             return;
         }
-        treadSpeed.y = 16f;
+        treadSpeed.y = 16f; // TODO: relate this to speed (or enemyData)
 
         Vector3 direction = nextCell.GetPosition() - transform.position;
         transform.Translate(direction.normalized * Time.deltaTime * speed);
@@ -68,6 +71,12 @@ public class Enemy : GameUnit
             SetCurrentCell(nextCell);
             targetCell = nextCell.nextPathCell;
         }
+    }
+
+    public void Setup(EnemyData enemyData)
+    {
+        this.enemyData = enemyData;
+        this.speed = enemyData.speed / 100;
     }
 
     public void SetCurrentCell(GridCell cell)

@@ -7,12 +7,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class GridManager : MonoBehaviour
+public class GridManager : UnitFactory
 {
     public Tilemap tilemap;
     public GameObject battlefield;
     private LevelData currentLevelData;
-
     private GridCell[,] gridCells;
 
     private int tilemapWidth;
@@ -130,11 +129,17 @@ public class GridManager : MonoBehaviour
         return cellPosition;
     }
 
-    internal void AddEnemy(GameObject enemy)
+    private void AddEnemy(GameObject enemy)
     {
         enemy.transform.SetParent(battlefield.transform, false);
         enemy.transform.position = tilemap.GetCellCenterWorld(gridPath.enemySpawn.cellPosition);
         enemy.transform.position.Set(enemy.transform.position.x, enemy.transform.position.y, -1);
         enemy.GetComponent<Enemy>().SetCurrentCell(gridPath.enemySpawn);
+    }
+
+    internal void SpawnEnemy(string name)
+    {
+        GameObject enemy = CreateEnemy(name);
+        AddEnemy(enemy);
     }
 }

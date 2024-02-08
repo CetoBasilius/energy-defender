@@ -9,7 +9,6 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public string dataType = "cannon";
     public GameManager gameManager;
     public GridManager gridManager;
-    public GameObject towerPrefab;
     public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
@@ -17,18 +16,17 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private GameObject draggedTower;
     private Vector3Int lastCell;
-    private TowerData towerData;
+    private int energyCost;
 
     void Start()
     {
-        towerData = gameManager.GetTowerData(dataType);
-        int energyCost = towerData != null ? towerData.energyCost : 0;
+        energyCost = gridManager.GetTowerEnergyCost(dataType);
         energyCostText.text = energyCost.ToString();
     }
 
     void Update()
     {
-        if (towerData.energyCost > gameManager.GetCurrentEnergy())
+        if (energyCost > gameManager.GetCurrentEnergy())
         {
             energyCostText.color = Color.red;
         }
@@ -40,6 +38,8 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        draggedTower = gridManager.CreateTower(dataType);
+
         draggedTower = Instantiate(towerPrefab);
         gridManager.AddTower(draggedTower);
         uiManager.LockCamera();
@@ -64,7 +64,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (gridManager.IsTileAvailable(mousePosition))
         {
-            if (gameManager.SpendEnergy(towerData.energyCost))
+            if (gameManager.SpendEnergy(energyCost))
             {
                 gridManager.PlaceTower(mousePosition, draggedTower.GetComponent<Tower>());
             }

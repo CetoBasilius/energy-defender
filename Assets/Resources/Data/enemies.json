@@ -7,7 +7,8 @@
         "attacksTowers": 1,
         "range": 2,
         "attackDamage": 10,
-        "attackRate": 2
+        "attackRate": 2,
+        "prefabPath": "Prefabs/Enemies/BasicInvader"
     },
     "swift": {
         "name": "Swift Runner",
@@ -17,7 +18,8 @@
         "attacksTowers": 2,
         "range": 2,
         "attackDamage": 20,
-        "attackRate": 3
+        "attackRate": 3,
+        "prefabPath": "Prefabs/Enemies/SwiftRunner"
     },
     "armored": {
         "name": "Armored Behemoth",
@@ -27,6 +29,7 @@
         "attacksTowers": 3,
         "range": 4,
         "attackDamage": 40,
-        "attackRate": 5
+        "attackRate": 5,
+        "prefabPath": "Prefabs/Enemies/ArmoredBehemoth"
     }
 }

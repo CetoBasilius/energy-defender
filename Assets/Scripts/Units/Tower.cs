@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 public class Tower : GameUnit
@@ -11,6 +12,8 @@ public class Tower : GameUnit
 
     private Enemy enemyTarget;
     private bool isActive = false;
+
+    private TowerData towerData;
 
     void Start()
     {
