@@ -12,7 +12,7 @@ namespace Data
         public int health;
 
 
-        public int range;
+        public int attackRange;
         public int attackDamage;
         public float attackRate;
 

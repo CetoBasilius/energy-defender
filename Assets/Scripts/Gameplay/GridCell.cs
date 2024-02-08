@@ -13,6 +13,7 @@ namespace Gameplay
         public Vector3Int cellPosition;
 
         public Tower tower;
+        public List<Tower> towersWatching = new List<Tower>();
         
         public GridCell nextPathCell;
         public GridCell previousPathCell;

@@ -122,9 +122,43 @@ public class GridManager : UnitFactory
         tower.transform.position = snapPosition;
 
         Vector2Int gridPosition = new Vector2Int(cellPosition.x - tilemapStartX, tilemapStartY - cellPosition.y);
-        gridCells[gridPosition.x, gridPosition.y].tower = tower;
+        GridCell gridCell = gridCells[gridPosition.x, gridPosition.y];
+        gridCell.tower = tower;
 
-        tower.Activate();
+        List<GridCell> cellsInRange = GetNeighbouringCells(gridPosition.x, gridPosition.y, tower.GetRange());
+        tower.Activate(cellsInRange);
+        tower.SetCurrentCell(gridCell);
+
+        foreach (GridCell cell in cellsInRange)
+        {
+            cell.towersWatching.Add(tower);
+        }
+    }
+
+    private List<GridCell> GetNeighbouringCells(int x, int y, int range)
+    {
+        x -= tilemapStartX;
+        y += tilemapStartY;
+        y = tilemapHeight - y - 2;
+
+        int startX = Mathf.Max(0, x - range);
+        int endX = Mathf.Min(tilemapWidth - 1, x + range);
+        int startY = Mathf.Max(0, y - range);
+        int endY = Mathf.Min(tilemapHeight - 1, y + range);
+
+        List<GridCell> cellsInRange = new List<GridCell>();
+        for (int i = startX; i <= endX; i++)
+        {
+            for (int j = startY; j <= endY; j++)
+            {
+                if (Vector2Int.Distance(new Vector2Int(x, y), new Vector2Int(i, j)) <= range)
+                {
+                    cellsInRange.Add(gridCells[i, j]);
+                }
+            }
+        }
+
+        return cellsInRange;
     }
 
     // Enemy is spawned at the spawn point on the battlefield
@@ -134,6 +168,27 @@ public class GridManager : UnitFactory
         enemy.transform.SetParent(battlefield.transform, false);
         enemy.transform.position = tilemap.GetCellCenterWorld(gridPath.enemySpawn.cellPosition);
         enemy.transform.position.Set(enemy.transform.position.x, enemy.transform.position.y, -1);
-        enemy.GetComponent<Enemy>().SetCurrentCell(gridPath.enemySpawn);
+
+        Enemy enemyComponent = enemy.GetComponent<Enemy>();
+        enemyComponent.OnCellChanged += HandleEnemyChangedCell;
+        enemyComponent.SetCurrentCell(gridPath.enemySpawn);
     }
+
+    private List<GridCell> HandleEnemyChangedCell(Enemy enemy, GridCell newCell, GridCell oldCell)
+    {
+        // Check surrounding cells for towers and return them in a list
+        List<GridCell> cellsWithTowers = new List<GridCell>();
+        List<GridCell> cellsInRange = GetNeighbouringCells(newCell.cellPosition.x, newCell.cellPosition.y, enemy.GetRange());
+        foreach (GridCell cell in cellsInRange)
+        {
+            ColorCell(cell.cellPosition, Color.magenta);
+            if (cell.tower != null)
+            {
+                ColorCell(cell.cellPosition, Color.yellow);
+                cellsWithTowers.Add(cell);
+            }
+        }
+        return cellsWithTowers;
+    }
+
 }

@@ -5,7 +5,7 @@
         "health": 100,
         "speed": 60,
         "attacksTowers": 1,
-        "range": 2,
+        "attackRange": 2,
         "attackDamage": 10,
         "attackRate": 2,
         "prefabPath": "Prefabs/Enemies/BasicInvader"
@@ -16,7 +16,7 @@
         "health": 30,
         "speed": 100,
         "attacksTowers": 2,
-        "range": 2,
+        "attackRange": 2,
         "attackDamage": 20,
         "attackRate": 3,
         "prefabPath": "Prefabs/Enemies/SwiftRunner"
@@ -27,7 +27,7 @@
         "health": 200,
         "speed": 30,
         "attacksTowers": 3,
-        "range": 4,
+        "attackRange": 4,
         "attackDamage": 40,
         "attackRate": 5,
         "prefabPath": "Prefabs/Enemies/ArmoredBehemoth"

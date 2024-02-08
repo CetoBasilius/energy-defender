@@ -7,6 +7,7 @@ namespace Data
     public class TowerData : UnitData
     {
         public float specialRate;
+        public int specialRange;
         public int maxAttackUnits;
         public int energyCost;
         public int maxQuantity;
