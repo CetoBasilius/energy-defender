@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Tower : GameUnit
 {
+    private TowerData data;
     public GameObject turret;
     public GameObject gun;
     public float rotationSpeed = 0f;
@@ -12,8 +13,6 @@ public class Tower : GameUnit
 
     private Enemy enemyTarget;
     private bool isActive = false;
-
-    private TowerData towerData;
 
     void Start()
     {
@@ -47,5 +46,10 @@ public class Tower : GameUnit
     public void Activate()
     {
         this.isActive = true;
+    }
+
+    public void Setup(TowerData towerData)
+    {
+        this.data = towerData;
     }
 }

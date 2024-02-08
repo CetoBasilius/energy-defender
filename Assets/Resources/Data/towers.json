@@ -9,7 +9,8 @@
         "specialRate": 0,
         "maxAttackUnits": 1,
         "energyCost": 5,
-        "maxQuantity": 100
+        "maxQuantity": 100,
+        "prefabPath": "Prefabs/Towers/TowerCannon"
     },
     "machinegun": {
         "name": "Machinegun",
@@ -21,7 +22,8 @@
         "specialRate": 0,
         "maxAttackUnits": 1,
         "energyCost": 10,
-        "maxQuantity": 100
+        "maxQuantity": 100,
+        "prefabPath": "Prefabs/Towers/TowerMachinegun"
     },
     "sniper": {
         "name": "Sniper",
@@ -33,7 +35,8 @@
         "specialRate": 0,
         "maxAttackUnits": 1,
         "energyCost": 15,
-        "maxQuantity": 100
+        "maxQuantity": 100,
+        "prefabPath": "Prefabs/Towers/TowerSniper"
     },
     "missile": {
         "name": "Missile Launcher",
@@ -45,7 +48,8 @@
         "specialRate": 0,
         "maxAttackUnits": 4,
         "energyCost": 20,
-        "maxQuantity": 100
+        "maxQuantity": 100,
+        "prefabPath": "Prefabs/Towers/TowerMissile"
     },
     "solar": {
         "name": "Solar Panel",
@@ -57,7 +61,8 @@
         "specialRate": 5,
         "maxAttackUnits": 0,
         "energyCost": 20,
-        "maxQuantity": 5
+        "maxQuantity": 5,
+        "prefabPath": "Prefabs/Towers/TowerSolar"
     },
     "power": {
         "name": "Power Plant",
@@ -69,6 +74,7 @@
         "specialRate": 1.5,
         "maxAttackUnits": 0,
         "energyCost": 20,
-        "maxQuantity": 5
+        "maxQuantity": 5,
+        "prefabPath": "Prefabs/Towers/TowerPower"
     }
 }

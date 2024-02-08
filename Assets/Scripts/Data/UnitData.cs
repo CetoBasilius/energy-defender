@@ -6,6 +6,7 @@ namespace Data
     [Serializable]
     public class UnitData
     {
+        public string id;
         public string name;
         public string description;
         public int health;

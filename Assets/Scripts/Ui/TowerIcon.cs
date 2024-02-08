@@ -6,21 +6,20 @@ using Data;
 
 public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public string dataType = "cannon";
+    public string id = "cannon";
     public GameManager gameManager;
     public GridManager gridManager;
     public TextMeshProUGUI energyCostText;
     public Color placeableColor = Color.green;
     public Color nonPlaceableColor = Color.red;
     public UIManager uiManager;
-
     private GameObject draggedTower;
     private Vector3Int lastCell;
     private int energyCost;
 
     void Start()
     {
-        energyCost = gridManager.GetTowerEnergyCost(dataType);
+        energyCost = gridManager.GetTowerEnergyCost(id);
         energyCostText.text = energyCost.ToString();
     }
 
@@ -38,10 +37,7 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        draggedTower = gridManager.CreateTower(dataType);
-
-        draggedTower = Instantiate(towerPrefab);
-        gridManager.AddTower(draggedTower);
+        draggedTower = gridManager.AddTower(id);
         uiManager.LockCamera();
     }
 

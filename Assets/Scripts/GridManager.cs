@@ -21,13 +21,6 @@ public class GridManager : UnitFactory
 
     private GridPath gridPath;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
 
@@ -98,9 +91,12 @@ public class GridManager : UnitFactory
         return false;
     }
 
-    public void AddTower(GameObject tower)
+    public GameObject AddTower(string id)
     {
+        GameObject tower = CreateTower(id);
         tower.transform.SetParent(battlefield.transform, false);
+
+        return tower;
     }
 
     public void PlaceTower(Vector3 mousePosition, Tower tower)
@@ -129,17 +125,12 @@ public class GridManager : UnitFactory
         return cellPosition;
     }
 
-    private void AddEnemy(GameObject enemy)
+    public void SpawnEnemy(string id)
     {
+        GameObject enemy = CreateEnemy(id);
         enemy.transform.SetParent(battlefield.transform, false);
         enemy.transform.position = tilemap.GetCellCenterWorld(gridPath.enemySpawn.cellPosition);
         enemy.transform.position.Set(enemy.transform.position.x, enemy.transform.position.y, -1);
         enemy.GetComponent<Enemy>().SetCurrentCell(gridPath.enemySpawn);
-    }
-
-    internal void SpawnEnemy(string name)
-    {
-        GameObject enemy = CreateEnemy(name);
-        AddEnemy(enemy);
     }
 }
