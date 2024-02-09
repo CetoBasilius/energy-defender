@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public ScrollableCamera scrollableCamera;
     public Counter energyPanel;
     public Counter wavePanel;
-
+    public GameObject rangeCircle;
 
     public void SetEnergy(float currentEnergy)
     {
@@ -43,5 +43,17 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void ShowRangeCircle(Vector3 mousePosition, int towerRange)
+    {
+        rangeCircle.transform.position = mousePosition;
+        rangeCircle.transform.localScale = new Vector3(towerRange * 2, towerRange * 2, 1);
+        rangeCircle.SetActive(true);
+    }
+
+    public void HideRangeCircle()
+    {
+        rangeCircle.SetActive(false);
     }
 }

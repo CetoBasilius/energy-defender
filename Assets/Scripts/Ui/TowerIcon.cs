@@ -60,6 +60,11 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             mousePosition.z = draggedTower.transform.position.z;
             draggedTower.transform.position = mousePosition;
 
+            // Show range circle
+            Tower towerComponent = draggedTower.GetComponent<Tower>();
+            int towerRange = towerComponent.GetRange();
+            uiManager.ShowRangeCircle(mousePosition, towerRange);
+            
             UpdateTileColor();
         }
     }
@@ -84,9 +89,11 @@ public class TowerDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             Destroy(draggedTower);
         }
 
+
         draggedTower = null;
         gridManager.ColorCell(lastCell, Color.white);
         uiManager.UnlockCamera();
+        uiManager.HideRangeCircle();
     }
 
     private void UpdateTileColor()

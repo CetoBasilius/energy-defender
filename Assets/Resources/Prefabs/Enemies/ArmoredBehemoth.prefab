@@ -691,7 +691,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6717140113691238630}
@@ -712,8 +712,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 1696134240082606994}
   body: {fileID: 2325406548504467512}
-  leftTread: {fileID: 6242982120515770485}
-  rightTread: {fileID: 1302158843561854164}
+  leftTread: {fileID: 658514789757421482}
+  rightTread: {fileID: 3106483214192815985}
 --- !u!1 &8527175185363808288
 GameObject:
   m_ObjectHideFlags: 0

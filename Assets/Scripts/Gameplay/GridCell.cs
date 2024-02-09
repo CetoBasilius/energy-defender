@@ -14,6 +14,7 @@ namespace Gameplay
 
         public Tower tower;
         public List<Tower> towersWatching = new List<Tower>();
+        public List<Enemy> enemies = new List<Enemy>();
         
         public GridCell nextPathCell;
         public GridCell previousPathCell;
@@ -55,6 +56,36 @@ namespace Gameplay
         public Vector3 GetPosition()
         {
             return this.position;
+        }
+
+        internal bool NotifyEnemyEntered(Enemy enemy)
+        {
+            if (!enemies.Contains(enemy))
+            {
+                enemies.Add(enemy);
+            }
+
+            bool notified = false;
+            foreach (Tower tower in towersWatching)
+            {
+                notified = tower.AddTarget(this) || notified;
+            }
+            return notified;
+        }
+
+        internal bool NotifyEnemyLeft(Enemy enemy)
+        {
+            if (enemies.Contains(enemy))
+            {
+                enemies.Remove(enemy);
+            }
+            
+            bool notified = false;
+            foreach (Tower tower in towersWatching)
+            {
+                notified = tower.RemoveTarget(this) || notified;
+            }
+            return notified;
         }
     }
 }

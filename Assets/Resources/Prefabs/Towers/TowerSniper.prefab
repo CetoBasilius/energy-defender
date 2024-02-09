@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2158808188235433279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.085, y: 0.13, z: 0.048765175}
+  m_LocalPosition: {x: -0.085, y: 0.05, z: 0.048765175}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -218,7 +218,6 @@ MonoBehaviour:
   gun: {fileID: 2158808188235433279}
   rotationSpeed: 1
   isDefense: 0
-  gameManager: {fileID: 0}
 --- !u!1 &8916047238919324035
 GameObject:
   m_ObjectHideFlags: 0

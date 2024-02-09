@@ -13,7 +13,7 @@ public class Tower : GameUnit
     public bool isDefense = false;
 
     private GridCell targetCell;
-    private List<GridCell> cellsInRange = new List<GridCell>();
+    private List<GridCell> targetCells = new List<GridCell>();
     private bool isActive = false;
     private GridCell currentCell;
 
@@ -33,23 +33,57 @@ public class Tower : GameUnit
         {
             return;
         }
+
+        if (targetCell == null)
+        {
+            if (targetCells.Count > 0)
+            {
+                targetCell = targetCells[0];
+            }
+        }
+
         if (targetCell != null && gun != null)
         {
-            Vector3 direction = targetCell.GetPosition() - turret.transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            turret.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Enemy targetEnemy = targetCell.enemies[0];
+
+            Vector3 turretDirection = targetEnemy.transform.position - turret.transform.position;
+            float desiredTurretAngle = Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg - 90;
+            float currentTurretAngle = turret.transform.rotation.eulerAngles.z;
+            float turretAngleDifference = Mathf.DeltaAngle(currentTurretAngle, desiredTurretAngle);
+            float turretRotationAmount = Mathf.Sign(turretAngleDifference) * Mathf.Min(Mathf.Abs(turretAngleDifference), 0.3f);
+            turret.transform.Rotate(0, 0, turretRotationAmount);
         }
     }
 
-    public void SetTarget(GridCell cell)
+    public bool AddTarget(GridCell cell)
     {
-        this.targetCell = cell;
+        if (targetCells.Contains(cell))
+        {
+            return false;
+        }
+
+        targetCells.Add(cell);
+        return true;
     }
 
-    public void Activate(List<GridCell> cellsInRange)
+    public bool RemoveTarget(GridCell cell)
+    {
+        if (cell == targetCell)
+        {
+            targetCell = null;
+        }
+
+        if (targetCells.Contains(cell))
+        {
+            targetCells.Remove(cell);
+            return true;
+        }
+        return false;
+    }
+
+    public void Activate()
     {
         this.isActive = true;
-        this.cellsInRange = cellsInRange;
     }
 
     public void Setup(TowerData towerData)

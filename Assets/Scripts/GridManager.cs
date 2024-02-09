@@ -11,6 +11,8 @@ public class GridManager : UnitFactory
 {
     public Tilemap tilemap;
     public GameObject battlefield;
+    public bool debugVisuals = false;
+
     private LevelData currentLevelData;
     private GridCell[,] gridCells;
 
@@ -91,8 +93,12 @@ public class GridManager : UnitFactory
         return false;
     }
 
-    public void ColorCell(Vector3Int cellPosition, Color color)
+    public void ColorCell(Vector3Int cellPosition, Color color, bool isDebug = false)
     {
+        if (isDebug && !debugVisuals)
+        {
+            return;
+        }
         tilemap.SetTileFlags(cellPosition, TileFlags.None);
         tilemap.SetColor(cellPosition, color);
     }
@@ -125,33 +131,33 @@ public class GridManager : UnitFactory
         GridCell gridCell = gridCells[gridPosition.x, gridPosition.y];
         gridCell.tower = tower;
 
-        List<GridCell> cellsInRange = GetNeighbouringCells(gridPosition.x, gridPosition.y, tower.GetRange());
-        tower.Activate(cellsInRange);
+        tower.Activate();
         tower.SetCurrentCell(gridCell);
 
+        List<GridCell> cellsInRange = GetNeighbouringCells(cellPosition.x, cellPosition.y, tower.GetRange());
         foreach (GridCell cell in cellsInRange)
         {
             cell.towersWatching.Add(tower);
         }
     }
 
-    private List<GridCell> GetNeighbouringCells(int x, int y, int range)
+    private List<GridCell> GetNeighbouringCells(int cellX, int cellY, int range)
     {
-        x -= tilemapStartX;
-        y += tilemapStartY;
-        y = tilemapHeight - y - 2;
+        cellX -= tilemapStartX;
+        cellY += tilemapStartY;
+        cellY = tilemapHeight - cellY - 2;
 
-        int startX = Mathf.Max(0, x - range);
-        int endX = Mathf.Min(tilemapWidth - 1, x + range);
-        int startY = Mathf.Max(0, y - range);
-        int endY = Mathf.Min(tilemapHeight - 1, y + range);
+        int startX = Mathf.Max(0, cellX - range);
+        int endX = Mathf.Min(tilemapWidth - 1, cellX + range);
+        int startY = Mathf.Max(0, cellY - range);
+        int endY = Mathf.Min(tilemapHeight - 1, cellY + range);
 
         List<GridCell> cellsInRange = new List<GridCell>();
         for (int i = startX; i <= endX; i++)
         {
             for (int j = startY; j <= endY; j++)
             {
-                if (Vector2Int.Distance(new Vector2Int(x, y), new Vector2Int(i, j)) <= range)
+                if (Vector2Int.Distance(new Vector2Int(cellX, cellY), new Vector2Int(i, j)) <= range)
                 {
                     cellsInRange.Add(gridCells[i, j]);
                 }
@@ -176,15 +182,41 @@ public class GridManager : UnitFactory
 
     private List<GridCell> HandleEnemyChangedCell(Enemy enemy, GridCell newCell, GridCell oldCell)
     {
+        bool isNewTowerEnemy = false;
+        bool isOldTowerEnemy = false;
+        if (newCell.NotifyEnemyEntered(enemy))
+        {
+            isNewTowerEnemy = true;
+        }
+        if (oldCell != null)
+        {
+            if (oldCell.NotifyEnemyLeft(enemy))
+            {
+                isOldTowerEnemy = true;
+            }
+        }
+
         // Check surrounding cells for towers and return them in a list
         List<GridCell> cellsWithTowers = new List<GridCell>();
         List<GridCell> cellsInRange = GetNeighbouringCells(newCell.cellPosition.x, newCell.cellPosition.y, enemy.GetRange());
         foreach (GridCell cell in cellsInRange)
         {
-            ColorCell(cell.cellPosition, Color.magenta);
+            if (cell == newCell && isNewTowerEnemy)
+            {
+                ColorCell(newCell.cellPosition, Color.blue, true);
+            }
+            else if (cell == oldCell && isOldTowerEnemy)
+            {
+                ColorCell(oldCell.cellPosition, Color.yellow, true);
+            }
+            else
+            {
+                ColorCell(cell.cellPosition, Color.magenta, true);
+            }
+
             if (cell.tower != null)
             {
-                ColorCell(cell.cellPosition, Color.yellow);
+                ColorCell(cell.cellPosition, Color.yellow, true);
                 cellsWithTowers.Add(cell);
             }
         }
